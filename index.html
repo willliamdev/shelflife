@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calculadora de Shelf Life</title>
+        <link rel="stylesheet" href="style.css">
+       
+    </head>
+    <body>
+        <div class="container">
+            <h1>Calculadora de Shelf Life (teste)</h1>
+
+            <label for="dataFabricacao">Data de Fabricação:</label>
+            <input type="date" id="dataFabricacao" />
+
+            <label for="dataValidade">Data de Validade:</label>
+            <input type="date" id="dataValidade" />
+
+            <label for="tipoProduto">Tipo de Produto Perecível:</label>
+            <select id="tipoProduto"></select>
+
+            <button onclick="calcularShelfLife()">Calcular Shelf Life</button>
+
+            <div id="resultado"></div>
+
+            <div class="observacoes">
+                <h2>Percentual de Vida Útil Esperada:</h2>
+                <table id="tabelaPereciveis">
+                    <thead>
+                        <tr>
+                            <th>Produto Perecível</th>
+                            <th>% Esperado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <footer>
+                <p>criado por <a target="_blank" href="https://willliam.dev">@willliamdev</a></p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
