@@ -24,11 +24,11 @@ body {
  select {
      display: block;
      margin-bottom: 10px;
+     width: 100%;
  }
 
  input[type="date"],
  select {
-     width: calc(100% - 22px);
      padding: 8px;
      border: 1px solid #ddd;
      border-radius: 4px;
@@ -37,7 +37,6 @@ body {
  button {
      background-color: #4caf50;
      color: white;
-     width: 100%;
      padding: 10px 15px;
      border: none;
      border-radius: 4px;
