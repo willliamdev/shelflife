@@ -1,84 +1,172 @@
-*{
- 
-    /* padding: 0; */
-    /* margin: 0; */
+* {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-body {
-     font-family: Arial, sans-serif;
-     margin: 20px;
-     background-color: #f4f4f4;
+
+
+:root {
+    --green: #0d883c;
+    --red: #c22323;
 }
- .container {
-     background-color: #fff;
-     padding: 40px;
-     border-radius: 8px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-     max-width: 700px;
-     margin: auto;
- }
 
- label,
- input,
- button,
- select {
-     display: block;
-     margin-bottom: 10px;
-     width: 100%;
- }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+}
 
- input[type="date"],
- select {
-     padding: 8px;
-     border: 1px solid #ddd;
-     border-radius: 4px;
- }
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width:  700px;
+    margin: 20px auto;
+}
 
- button {
-     background-color: #4caf50;
-     color: white;
-     padding: 10px 15px;
-     border: none;
-     border-radius: 4px;
-     cursor: pointer;
-     font-size: 16px;
- }
+label,
+input,
+button,
+select {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
 
- button:hover {
-     background-color: #45a049;
- }
+input[type="date"],
+select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
- #resultado {
-     margin-top: 20px;
-     font-size: 1.2em;
-     font-weight: bold;
-     color: #333;
- }
+button {
+    background-color: var(--green);
+    color: white;
+    margin: 15px 0;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
 
- .observacoes {
-     margin-top: 30px;
-     padding-top: 20px;
-     border-top: 1px solid #eee;
- }
 
- table {
-     width: 100%;
-     border-collapse: collapse;
-     margin-top: 10px;
- }
+h1{
 
- th,
- td {
-     border: 1px solid #ddd;
-     padding: 8px;
-     text-align: left;
- }
+    text-align: center;
+    margin-bottom: 30px;
+}
+.dateInputContainer {
+    display: flex;
+    justify-content: space-between;
+}
 
- th {
-     background-color: #f2f2f2;
- }
+#resultado {
+    margin-top: 20px;
+    font-weight: bold;
+    /* color: #333; */
+    /* display: flex; */
+    /* gap: 10px; */
+}
 
- footer {
-     margin-top: 100px;
-     text-align: center;
- }
+
+#status {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--green);
+    border-radius: 4px;
+    color: #fff;
+    
+}
+
+#status h3 {
+    font-size: 20pt;
+    margin-bottom: 20px;
+}
+
+
+.progress-bar-container {
+    width: 100%;
+    background: #e5e5e5;
+    height: 20px;
+    margin: 20px 0px;
+    border-radius: 4px;
+}
+
+.progress-bar-fill {
+    flex: 1;
+    height: 20px;
+    background: var(--green);
+    border-radius: 4px;
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.progress-bar-container p{    
+    color: #fff;
+}
+
+
+/*
+#resultado div {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+
+
+#daysInfo{
+    background-color: #E5E5E5;
+}
+
+
+#percentageInfo{
+    background-color: #45ac2b;
+    color: #ddd;
+} */
+
+.observacoes {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: center;
+}
+
+
+
+@media (max-width:768px) {
+    
+    .container{
+        width: 100%;
+        margin: 0px;
+    }
+
+
+    .dateInputContainer{
+        display: block;
+    }
+}
