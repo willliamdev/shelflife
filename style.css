@@ -1,84 +1,216 @@
-*{
- 
-    /* padding: 0; */
-    /* margin: 0; */
+* {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-body {
-     font-family: Arial, sans-serif;
-     margin: 20px;
-     background-color: #f4f4f4;
+
+
+:root {
+    --green: #0d883c;
+    --red: #c22323;
 }
- .container {
-     background-color: #fff;
-     padding: 40px;
-     border-radius: 8px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-     max-width: 700px;
-     margin: auto;
- }
 
- label,
- input,
- button,
- select {
-     display: block;
-     margin-bottom: 10px;
-     width: 100%;
- }
+.redBackground {
+    background-color: var(--red);
+}
 
- input[type="date"],
- select {
-     padding: 8px;
-     border: 1px solid #ddd;
-     border-radius: 4px;
- }
+.greenBackground {
+    background-color: var(--green);
+}
 
- button {
-     background-color: #4caf50;
-     color: white;
-     padding: 10px 15px;
-     border: none;
-     border-radius: 4px;
-     cursor: pointer;
-     font-size: 16px;
- }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #e5e5e5;
+}
 
- button:hover {
-     background-color: #45a049;
- }
+header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
 
- #resultado {
-     margin-top: 20px;
-     font-size: 1.2em;
-     font-weight: bold;
-     color: #333;
- }
+header img {
+    height: 50px;
+}
 
- .observacoes {
-     margin-top: 30px;
-     padding-top: 20px;
-     border-top: 1px solid #eee;
- }
 
- table {
-     width: 100%;
-     border-collapse: collapse;
-     margin-top: 10px;
- }
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 20px auto;
+}
 
- th,
- td {
-     border: 1px solid #ddd;
-     padding: 8px;
-     text-align: left;
- }
+label,
+input,
+button,
+select {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
 
- th {
-     background-color: #f2f2f2;
- }
+input[type="date"],
+select,
+button {
+    border: 2px solid var(--green);
+    padding: 8px;
+    border-radius: 6px;
+}
 
- footer {
-     margin-top: 100px;
-     text-align: center;
- }
+/* button {
+    background: var(--green);
+    color: white;
+    margin: 15px 0;
+    padding: 15px;
+    
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 3px 5px 0px #3a3a3a;
+    transition: 300ms;
+}
+
+
+button:hover {
+    background-color: #e5e5e5;
+    color: var(--green);
+    box-shadow: 3px 8px 0px var(--green);
+
+    
+}
+ */
+button {
+    margin: 20px 0px ;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background-color: var(--green);
+    letter-spacing: 1.4px;
+    font-weight: 900;
+    transition: all 0.3s ease;
+    box-shadow: #0e5228 0px 8px 0px 0px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: #0e5228 0px 4px 0px 0px;
+}
+
+button:active {
+    background-color: var(--green);
+    box-shadow: #0e5228 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
+
+
+
+h1 {
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dateInputContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#resultado {
+    margin-top: 30px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 200px;
+    /* color: #333; */
+    /* display: flex; */
+    /* gap: 10px; */
+}
+
+
+#status {
+    text-align: center;
+    padding: 30px;
+    border-radius: 4px;
+    color: #fff;
+
+}
+
+#status h3 {
+    text-transform: uppercase;
+    font-size: 20pt;
+    margin-bottom: 20px;
+}
+
+
+.percentage-bar-container {
+    width: 100%;
+    background: #e5e5e5;
+    height: 20px;
+    margin: 20px 0px;
+    border-radius: 4px;
+}
+
+#percentage-bar-fill {
+    flex: 1;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+#percentage-bar-fill p {
+    color: #fff;
+    padding-right: 8px;
+}
+
+
+.observacoes {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: center;
+}
+
+
+
+@media (max-width:768px) {
+
+    .container {
+        width: 100%;
+        margin: 0px;
+    }
+
+
+    .dateInputContainer {
+        display: block;
+    }
+}

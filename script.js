@@ -17,104 +17,157 @@ const pereciveis = {
   "Queijos": 70,
   "Sorvetes": 70
 }
+function dateDiff(dateA, dateB) {
+  const dailyMs = 1000 * 60 * 60 * 24
+  let dateDiff = dateA.getTime() - dateB.getTime()
+  dateDiff = Math.abs(dateDiff / dailyMs)
+  return dateDiff;
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const selectTipoProduto = document.getElementById("tipoProduto");
+  const selectTipoProduto = document.getElementById("tipoProduto")
   const tabelaPereciveisBody = document
     .getElementById("tabelaPereciveis")
-    .getElementsByTagName("tbody")[0];
+    .getElementsByTagName("tbody")[0]
 
   for (const produto in pereciveis) {
-  
-    const option = document.createElement("option");
-    option.value = produto;
-    option.textContent = `${produto} ${pereciveis[produto]}%`;
-    selectTipoProduto.appendChild(option);
 
-  
-    const row = tabelaPereciveisBody.insertRow();
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    cell1.textContent = produto;
-    cell2.textContent = pereciveis[produto] + "%";
+    const option = document.createElement("option")
+    option.value = produto
+    option.textContent = `${produto} ${pereciveis[produto]}%`
+    selectTipoProduto.appendChild(option)
+
+
+    const row = tabelaPereciveisBody.insertRow()
+    const cell1 = row.insertCell(0)
+    const cell2 = row.insertCell(1)
+    cell1.textContent = produto
+    cell2.textContent = pereciveis[produto] + "%"
   }
-});
+})
+
+
+function dateDiff(dateA, dateB) {
+  const dailyMs = 1000 * 60 * 60 * 24
+  let dateDiff = dateA.getTime() - dateB.getTime()
+  dateDiff = Math.abs(dateDiff / dailyMs)
+  return dateDiff;
+}
+
 
 function calcularShelfLife() {
-  const dataFabricacaoStr = document.getElementById("dataFabricacao").value;
-  const dataValidadeStr = document.getElementById("dataValidade").value;
-  const tipoProduto = document.getElementById("tipoProduto").value;
-  const resultadoDiv = document.getElementById("resultado");
+  const dataFabricacaoStr = document.getElementById("dataFabricacao").value
+  const dataValidadeStr = document.getElementById("dataValidade").value
+  const tipoProduto = document.getElementById("tipoProduto").value
+
+  const response = {}
+
 
   if (!dataFabricacaoStr || !dataValidadeStr) {
-    resultadoDiv.innerHTML =
-      "Por favor, insira as datas de fabricação e validade.";
-    resultadoDiv.style.color = "red";
-    return;
+    response.status = 'Erro'
+    response.message = "Por favor, insira as datas de fabricação e validade"
+    render(response)
+    return
   }
 
-  const dataFabricacao = new Date(dataFabricacaoStr + "T00:00:00");
-  const dataValidade = new Date(dataValidadeStr + "T00:00:00");
-  const dataAtual = new Date();
-  dataAtual.setHours(0, 0, 0, 0);
+  const dataFabricacao = new Date(dataFabricacaoStr + "T00:00:00")
+  const dataValidade = new Date(dataValidadeStr + "T00:00:00")
+  const dataAtual = new Date()
+  dataAtual.setHours(0, 0, 0, 0)
 
-  if(dataFabricacao> dataAtual){
-    resultadoDiv.innerHTML =
-      "A data de fabricação de anteceder a data hoje: " + dataAtual.getDate();
-    resultadoDiv.style.color = "red";
-    return;
+  if (dataFabricacao > dataAtual) {
+    response.status = 'Erro'
+    response.message = "A data de fabricação deve anteceder a data hoje!!"
+    render(response)
+    return
   }
-
-
 
   if (dataFabricacao >= dataValidade) {
-    resultadoDiv.innerHTML =
-      "A data de fabricação deve ser anterior à data de validade.";
-    resultadoDiv.style.color = "red";
-    return;
+    response.status = 'Erro'
+    response.message = "A data de fabricação deve ser anterior à data de validade"
+
+    render(response)
+    return
   }
 
   if (dataAtual > dataValidade) {
-    resultadoDiv.innerHTML = "O produto já está vencido!";
-    resultadoDiv.style.color = "red";
-    return;
+    console.log("aaaaa")
+    response.status = 'Erro'
+    response.message = "O produto já está vencido!"
+    render(response)
+    return
   }
 
+  const shelfLife = dateDiff(dataFabricacao, dataValidade)
+  const daysToUse = dateDiff(dataValidade, dataAtual)
 
-  const diffTotalMs = dataValidade.getTime() - dataFabricacao.getTime();
-  const shelfLifeTotalDias = diffTotalMs / (1000 * 60 * 60 * 24);
-
-
-  const diffRestanteMs = dataValidade.getTime() - dataAtual.getTime();
-  const diasRestantes = diffRestanteMs / (1000 * 60 * 60 * 24);
-
-
-  let percentualVidaUtilRestante = 0;
-  if (shelfLifeTotalDias > 0) {
-    percentualVidaUtilRestante = (diasRestantes / shelfLifeTotalDias) * 100;
+  let percentualVidaUtilRestante = 0
+  if (shelfLife > 0) {
+    percentualVidaUtilRestante = (daysToUse / shelfLife) * 100
   }
 
-  percentualVidaUtilRestante = Math.max(0, percentualVidaUtilRestante);
+  percentualVidaUtilRestante = Math.max(0, percentualVidaUtilRestante)
+  response.percentage = percentualVidaUtilRestante.toFixed(2)
+
+  console.log(response)
 
 
-  const percentualEsperado = pereciveis[tipoProduto];
-  let statusRecebimento = "";
-  let statusColor = "";
+  const minimumPercentage = pereciveis[tipoProduto]
 
-  if (percentualVidaUtilRestante >= percentualEsperado) {
-    statusRecebimento = "RECEBER";
-    statusColor = "green";
+
+  if (response.percentage >= minimumPercentage) {
+    response.status = 'Accepted'
+    response.message = `Restam ${daysToUse} dias de um total de ${shelfLife}`
+    render(response)
+    return
   } else {
-    statusRecebimento = "NÃO RECEBER";
-    statusColor = "red";
+    response.status = 'Rejected'
+    response.message = `Restam ${daysToUse} dias de um total de ${shelfLife}`
+    render(response)
   }
+}
+
+
+
+function render(response) {
+
+  const resultadoDiv = document.getElementById("resultado")
+
+  switch (response.status) {
+    case 'Erro':
+      response.title = "Oops!"
+      response.bgColor = 'redBackground'
+      response.percentageBar = 'hidden'
+      console.log("a" + response.percentageBar)
+      break
+
+    case 'Rejected':
+      response.title = "Não Receber"
+      response.bgColor = 'redBackground'
+
+      break
+    case 'Accepted':
+      response.title = "Receber"
+      response.bgColor = 'greenBackground'
+
+      break
+
+    default:
+      console.log("Log error:" + response.status)
+      break
+  }
+
 
   resultadoDiv.innerHTML = `
-    <p>Shelf Life Total: ${Math.round(shelfLifeTotalDias)} dias</p>
-    <p>Dias Restantes: ${Math.round(diasRestantes)} dias</p>
-    <p>% de Vida Útil Restante: <strong>${percentualVidaUtilRestante.toFixed(2)}%</strong></p>
-    <p>Status: <strong style="color: ${statusColor}">${statusRecebimento}</strong></p>
-`;
-  resultadoDiv.style.color = "#333";
+    <div id="status" class="${response.bgColor}">
+      <h3>${response.title}</h3>
+      <span>${response.message}</span>
+    </div>
+
+    <div class="percentage-bar-container" style="visibility: ${response.percentageBar}">
+      <div class="${response.bgColor}" id="percentage-bar-fill" style="width: ${response.percentage}%">
+        <p>${response.percentage}%</p>
+      </div>
+    </div>`
 }
