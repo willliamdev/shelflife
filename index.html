@@ -5,13 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora de Shelf Life</title>
+    <link rel="shortcut icon" href="src/favico.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-
-        <h1>Calculadora de Shelf Life (teste)</h1>
+        <header>
+            <h1>Calculadora de ShelfLife</h1> 
+            <img src="src/icon.png" alt="Icone de Aprovação">
+        </header>
 
         <div class="dateInputContainer">
 
@@ -32,28 +38,13 @@
         </div>
 
 
-        <button  onclick="calcularShelfLife()">CALCULAR</button>
-    
+        <button onclick="calcularShelfLife()">CALCULAR</button>
+
 
         <!-- <div id="resultado"></div> -->
 
         <div id="resultado">
-            <div id="status">
-                <h3>RECEBER</h3>
-
-                <div id="status-description">
-                    <span> Restam 103 dias de um total de 180 dias</span>
-                
-                </div>
-
-            </div>
-
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressBarFill">
-                    <p>40%</p>
-                </div>
-            </div>
-
+            
         </div>
 
 

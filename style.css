@@ -10,17 +10,37 @@
     --red: #c22323;
 }
 
+.redBackground {
+    background-color: var(--red);
+}
+
+.greenBackground {
+    background-color: var(--green);
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #e5e5e5;
 }
+
+header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+header img {
+    height: 50px;
+}
+
 
 .container {
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width:  700px;
+    max-width: 700px;
     margin: 20px auto;
 }
 
@@ -34,38 +54,80 @@ select {
 }
 
 input[type="date"],
-select {
+select,
+button {
+    border: 2px solid var(--green);
     padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
-button {
-    background-color: var(--green);
+/* button {
+    background: var(--green);
     color: white;
     margin: 15px 0;
     padding: 15px;
-    border: none;
+    
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 900;
+    box-shadow: 3px 5px 0px #3a3a3a;
+    transition: 300ms;
 }
 
 
-h1{
+button:hover {
+    background-color: #e5e5e5;
+    color: var(--green);
+    box-shadow: 3px 8px 0px var(--green);
+
+    
+}
+ */
+button {
+    margin: 20px 0px ;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background-color: var(--green);
+    letter-spacing: 1.4px;
+    font-weight: 900;
+    transition: all 0.3s ease;
+    box-shadow: #0e5228 0px 8px 0px 0px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: #0e5228 0px 4px 0px 0px;
+}
+
+button:active {
+    background-color: var(--green);
+    box-shadow: #0e5228 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
+
+
+
+h1 {
 
     text-align: center;
     margin-bottom: 30px;
 }
+
 .dateInputContainer {
     display: flex;
     justify-content: space-between;
 }
 
 #resultado {
-    margin-top: 20px;
+    margin-top: 30px;
     font-weight: bold;
+    text-align: center;
+    min-height: 200px;
     /* color: #333; */
     /* display: flex; */
     /* gap: 10px; */
@@ -75,19 +137,19 @@ h1{
 #status {
     text-align: center;
     padding: 30px;
-    background-color: var(--green);
     border-radius: 4px;
     color: #fff;
-    
+
 }
 
 #status h3 {
+    text-transform: uppercase;
     font-size: 20pt;
     margin-bottom: 20px;
 }
 
 
-.progress-bar-container {
+.percentage-bar-container {
     width: 100%;
     background: #e5e5e5;
     height: 20px;
@@ -95,38 +157,20 @@ h1{
     border-radius: 4px;
 }
 
-.progress-bar-fill {
+#percentage-bar-fill {
     flex: 1;
     height: 20px;
-    background: var(--green);
     border-radius: 4px;
-    width: 40%;
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
-.progress-bar-container p{    
+#percentage-bar-fill p {
     color: #fff;
+    padding-right: 8px;
 }
 
-
-/*
-#resultado div {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-
-
-#daysInfo{
-    background-color: #E5E5E5;
-}
-
-
-#percentageInfo{
-    background-color: #45ac2b;
-    color: #ddd;
-} */
 
 .observacoes {
     margin-top: 30px;
@@ -159,14 +203,14 @@ footer {
 
 
 @media (max-width:768px) {
-    
-    .container{
+
+    .container {
         width: 100%;
         margin: 0px;
     }
 
 
-    .dateInputContainer{
+    .dateInputContainer {
         display: block;
     }
 }
