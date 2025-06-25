@@ -61,29 +61,7 @@ button {
     border-radius: 6px;
 }
 
-/* button {
-    background: var(--green);
-    color: white;
-    margin: 15px 0;
-    padding: 15px;
-    
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 900;
-    box-shadow: 3px 5px 0px #3a3a3a;
-    transition: 300ms;
-}
 
-
-button:hover {
-    background-color: #e5e5e5;
-    color: var(--green);
-    box-shadow: 3px 8px 0px var(--green);
-
-    
-}
- */
 button {
     margin: 20px 0px ;
     padding: 14px;
