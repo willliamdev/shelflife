@@ -26,8 +26,10 @@ body {
 header {
     height: 50px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
+    gap: 10px;
 }
 
 header img {
@@ -90,11 +92,7 @@ button:active {
 
 
 
-h1 {
 
-    text-align: center;
-    margin-bottom: 30px;
-}
 
 .dateInputContainer {
     display: flex;
@@ -139,6 +137,7 @@ h1 {
     flex: 1;
     height: 20px;
     border-radius: 4px;
+    min-width: 10%;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -149,9 +148,8 @@ h1 {
     padding-right: 8px;
 }
 
-
 .observacoes {
-    margin-top: 30px;
+    margin-top: 300px;
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
@@ -187,6 +185,12 @@ footer {
         margin: 0px;
     }
 
+    h1 {
+        font-size: 1.4rem;
+    }
+    header img {
+        height: 25px;
+    }
 
     .dateInputContainer {
         display: block;
