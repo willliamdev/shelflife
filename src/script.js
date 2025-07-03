@@ -1,4 +1,4 @@
-const pereciveis = {
+const categories = {
   "Mercearia em Geral": 50,
   "Bacalhau Resfriado": 70,
   "Congelados Industrializados": 70,
@@ -17,6 +17,7 @@ const pereciveis = {
   "Queijos": 70,
   "Sorvetes": 70
 }
+
 function dateDiff(dateA, dateB) {
   const dailyMs = 1000 * 60 * 60 * 24
   let dateDiff = dateA.getTime() - dateB.getTime()
@@ -24,30 +25,19 @@ function dateDiff(dateA, dateB) {
   return dateDiff;
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
-  const selectTipoProduto = document.getElementById("tipoProduto")
-  const tabelaPereciveisBody = document
-    .getElementById("tabelaPereciveis")
-    .getElementsByTagName("tbody")[0]
-
-  for (const produto in pereciveis) {
+  const categoriesOptions = document.getElementById("category")
+  
+  for (const category in categories) {
 
     const option = document.createElement("option")
-    option.value = produto
-    option.textContent = `${produto} ${pereciveis[produto]}%`
-    selectTipoProduto.appendChild(option)
+    option.value = category
+    option.textContent = `${category} ${categories[category]}%`
+    categoriesOptions.appendChild(option)
 
-
-    const row = tabelaPereciveisBody.insertRow()
-    const cell1 = row.insertCell(0)
-    const cell2 = row.insertCell(1)
-    cell1.textContent = produto
-    cell2.textContent = pereciveis[produto] + "%"
   }
 })
 
-
 function dateDiff(dateA, dateB) {
   const dailyMs = 1000 * 60 * 60 * 24
   let dateDiff = dateA.getTime() - dateB.getTime()
@@ -55,35 +45,32 @@ function dateDiff(dateA, dateB) {
   return dateDiff;
 }
 
-
-function calcularShelfLife() {
-  const dataFabricacaoStr = document.getElementById("dataFabricacao").value
-  const dataValidadeStr = document.getElementById("dataValidade").value
-  const tipoProduto = document.getElementById("tipoProduto").value
-
+function calcShelfLife() {
+  const manufactureDateStr = document.getElementById("manufactureDate").value
+  const sellByDateStr = document.getElementById("sellByDate").value
+  const selectedCategory = document.getElementById("category").value
   const response = {}
 
-
-  if (!dataFabricacaoStr || !dataValidadeStr) {
+  if (!manufactureDateStr || !sellByDateStr) {
     response.status = 'Erro'
     response.message = "Por favor, insira as datas de fabricação e validade"
     render(response)
     return
   }
 
-  const dataFabricacao = new Date(dataFabricacaoStr + "T00:00:00")
-  const dataValidade = new Date(dataValidadeStr + "T00:00:00")
-  const dataAtual = new Date()
-  dataAtual.setHours(0, 0, 0, 0)
+  const manufactureDate = new Date(manufactureDateStr + "T00:00:00")
+  const sellByDate = new Date(sellByDateStr + "T00:00:00")
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
 
-  if (dataFabricacao > dataAtual) {
+  if (manufactureDate > today) {
     response.status = 'Erro'
     response.message = "A data de fabricação deve anteceder a data hoje!!"
     render(response)
     return
   }
 
-  if (dataFabricacao >= dataValidade) {
+  if (manufactureDate >= sellByDate) {
     response.status = 'Erro'
     response.message = "A data de fabricação deve ser anterior à data de validade"
 
@@ -91,16 +78,15 @@ function calcularShelfLife() {
     return
   }
 
-  if (dataAtual > dataValidade) {
-    console.log("aaaaa")
+  if (today > sellByDate) {
     response.status = 'Erro'
-    response.message = "O produto já está vencido!"
+    response.message = "O category já está vencido!"
     render(response)
     return
   }
 
-  const shelfLife = dateDiff(dataFabricacao, dataValidade)
-  const daysToUse = dateDiff(dataValidade, dataAtual)
+  const shelfLife = dateDiff(manufactureDate, sellByDate)
+  const daysToUse = dateDiff(sellByDate, today)
 
   let percentualVidaUtilRestante = 0
   if (shelfLife > 0) {
@@ -108,38 +94,30 @@ function calcularShelfLife() {
   }
 
   percentualVidaUtilRestante = Math.max(0, percentualVidaUtilRestante)
-  response.percentage = percentualVidaUtilRestante.toFixed(2)
+  response.percentage = percentualVidaUtilRestante.toFixed(1)
+  response.minimumPercentage = categories[selectedCategory]
 
-  console.log(response)
-
-
-  const minimumPercentage = pereciveis[tipoProduto]
-
-
-  if (response.percentage >= minimumPercentage) {
+  if (response.percentage >= response.minimumPercentage) {
     response.status = 'Accepted'
-    response.message = `Restam ${daysToUse} dias de um total de ${shelfLife}`
+    response.message = (`Ainda restam ${daysToUse} dias de ${shelfLife}`)
     render(response)
     return
   } else {
     response.status = 'Rejected'
-    response.message = `Restam ${daysToUse} dias de um total de ${shelfLife}`
+    response.message = (`Restam apenas ${daysToUse} dias de ${shelfLife}<br><br>
+      Mínimo de shelflife: ${response.minimumPercentage}%`)
     render(response)
   }
 }
 
-
-
 function render(response) {
-
-  const resultadoDiv = document.getElementById("resultado")
+  const result = document.getElementById("result")
 
   switch (response.status) {
     case 'Erro':
       response.title = "Oops!"
       response.bgColor = 'redBackground'
       response.percentageBar = 'hidden'
-      console.log("a" + response.percentageBar)
       break
 
     case 'Rejected':
@@ -158,16 +136,16 @@ function render(response) {
       break
   }
 
-
-  resultadoDiv.innerHTML = `
+  result.innerHTML = `
     <div id="status" class="${response.bgColor}">
-      <h3>${response.title}</h3>
-      <span>${response.message}</span>
+        <h3>${response.title}</h3>
+        <span>${response.message}</span>
+        
+        <div class="percentage-bar-container" style="visibility: ${response.percentageBar}">
+            <div class="${response.bgColor}" id="percentage-bar-fill" style="width: ${response.percentage}%">
+                <p>${response.percentage}%</p>
+            </div>
+        </div>
     </div>
-
-    <div class="percentage-bar-container" style="visibility: ${response.percentageBar}">
-      <div class="${response.bgColor}" id="percentage-bar-fill" style="width: ${response.percentage}%">
-        <p>${response.percentage}%</p>
-      </div>
-    </div>`
+    `
 }

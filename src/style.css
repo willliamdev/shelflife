@@ -36,14 +36,14 @@ header img {
     height: 50px;
 }
 
-
 .container {
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 700px;
-    margin: 20px auto;
+    margin: 4vh auto;
+    min-height: 92vh;
 }
 
 label,
@@ -65,7 +65,7 @@ button {
 
 
 button {
-    margin: 20px 0px ;
+    margin: 20px 0px;
     padding: 14px;
     border-radius: 8px;
     border: none;
@@ -90,32 +90,24 @@ button:active {
     transition: 200ms;
 }
 
-
-
-
-
 .dateInputContainer {
     display: flex;
     justify-content: space-between;
 }
 
-#resultado {
-    margin-top: 30px;
+#result {
+    margin-top: 50px;
     font-weight: bold;
     text-align: center;
     min-height: 200px;
-    /* color: #333; */
-    /* display: flex; */
-    /* gap: 10px; */
 }
 
 
 #status {
     text-align: center;
-    padding: 30px;
+    padding: 10px;
     border-radius: 4px;
     color: #fff;
-
 }
 
 #status h3 {
@@ -124,18 +116,19 @@ button:active {
     margin-bottom: 20px;
 }
 
-
 .percentage-bar-container {
     width: 100%;
     background: #e5e5e5;
-    height: 20px;
-    margin: 20px 0px;
-    border-radius: 4px;
+    height: 30px;
+    margin-top: 20px;
+    border: solid 3px #e5e5e5;
+    border-radius: 6px;
+    box-shadow: #000000a4 0px 0px 2px;
 }
 
 #percentage-bar-fill {
     flex: 1;
-    height: 20px;
+    height: 100%;
     border-radius: 4px;
     min-width: 10%;
     display: flex;
@@ -145,49 +138,29 @@ button:active {
 
 #percentage-bar-fill p {
     color: #fff;
-    padding-right: 8px;
-}
-
-.observacoes {
-    margin-top: 300px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
 }
 
 footer {
-    margin-top: 100px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 50px 0px 30px;
     text-align: center;
 }
-
 
 
 @media (max-width:768px) {
 
     .container {
         width: 100%;
+        height: 100vh;
         margin: 0px;
     }
 
     h1 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
+
     header img {
         height: 25px;
     }
@@ -195,4 +168,12 @@ footer {
     .dateInputContainer {
         display: block;
     }
+
+    #percentage-bar-fill {
+        min-width: 15%;
+    }
+    #percentage-bar-fill p {
+        font-size: 0.7em;
+    }
+
 }

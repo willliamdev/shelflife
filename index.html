@@ -7,63 +7,44 @@
     <title>Calculadora de Shelf Life</title>
     <link rel="shortcut icon" href="src/favicon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="src/style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Calculadora de ShelfLife</h1> 
+            <h1>Calculadora de ShelfLife</h1>
             <img src="src/icon.png" alt="Icone de Aprovação">
         </header>
 
         <div class="dateInputContainer">
 
             <div>
-                <label for="dataFabricacao">Data de Fabricação:</label>
-                <input type="date" id="dataFabricacao" />
+                <label for="manufactureDate">Data de Fabricação:</label>
+                <input type="date" id="manufactureDate" />
             </div>
 
             <div>
-                <label for="dataValidade">Data de Validade:</label>
-                <input type="date" id="dataValidade" />
+                <label for="sellByDate">Data de Validade:</label>
+                <input type="date" id="sellByDate" />
             </div>
             <div>
-                <label for="tipoProduto">Tipo de Produto Perecível:</label>
-                <select id="tipoProduto"></select>
+                <label for="category">Tipo de Produto Perecível:</label>
+                <select id="category"></select>
             </div>
-
         </div>
 
-        <div id="resultado">
-            
-        </div>
+        <button onclick="calcShelfLife()">CALCULAR</button>
 
-        <button onclick="calcularShelfLife()">CALCULAR</button>
+        <div id="result"></div>
 
-
-        <!-- <div id="resultado"></div> -->
-
-        
-
-
-        <div class="observacoes">
-            <h2>Percentual de Vida Útil Esperada:</h2>
-            <table id="tabelaPereciveis">
-                <thead>
-                    <tr>
-                        <th>Produto Perecível</th>
-                        <th>% Esperado</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
+    </div>    
     <footer>
-        <p>Criado por <a target="_blank" href="https://willliam.dev">@willliamdev</a></p>
+        <p>Criado por <a target="_blank" href="https://willliam.dev">@willliamdev</a> | v0.8</p>
     </footer>
     <script src="src/script.js"></script>
 </body>
