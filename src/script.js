@@ -15,6 +15,7 @@ const categories = {
   "Massa Fresca": 60,
   "Peixes Congelados": 60,
   "Queijos": 70,
+  "Queijos Dom Pedro": 50,
   "Sorvetes": 70
 }
 
