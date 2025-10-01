@@ -81,7 +81,7 @@ function calcShelfLife() {
 
   if (today > sellByDate) {
     response.status = 'Erro'
-    response.message = "O category já está vencido!"
+    response.message = "O produto já está vencido!"
     render(response)
     return
   }
